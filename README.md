@@ -12,7 +12,7 @@ This package provides comprehensive security hardening for Windows Server 2025 i
 
 - **OS**: Windows Server 2025, GUI, fully patched
 - **Role**: Domain-joined member server hosting line-of-business applications
-- **Domain**: Joined to Active Directory (lauriston.int), managed by Group Policy + possibly Intune
+- **Domain**: Joined to Active Directory, managed by Group Policy + possibly Intune
 - **Access**: Local admin and domain admin available as needed
 
 ## Package Structure
@@ -302,4 +302,5 @@ Each configuration includes references to:
 - **CIS**: CIS Benchmark control IDs
 - **MS Baseline**: Microsoft Security Baseline references
 - **ASD E8**: Australian Signals Directorate Essential Eight mappings
+
 
