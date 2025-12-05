@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Windows Defender Application Control (WDAC) Policy Template
+    This is a simplified template. For production use, generate policies using New-CIPolicy cmdlet.
+    
+    Usage:
+    1. Customize this template with your specific requirements
+    2. Add line-of-business application rules
+    3. Convert to binary: ConvertFrom-CIPolicy -XmlFilePath "policy.xml" -BinaryFilePath "policy.bin"
+    4. Deploy: Invoke-CimMethod -Namespace root\Microsoft\Windows\CI -ClassName PS_UpdateAndCompareCIPolicy -MethodName Update -Arguments @{FilePath='policy.bin'}
+    
+    Note: Start in Audit mode, review logs for 30 days, then switch to Enforced mode.
+-->
+<SiPolicy xmlns="urn:schemas-microsoft-com:sipolicy" PolicyType="Base Policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:schemas-microsoft-com:sipolicy PolicySchema.xsd">
+  <VersionEx>10.0.0.0</VersionEx>
+  <PolicyID>{REPLACE-WITH-GUID}</PolicyID>
+  <BasePolicyID>{REPLACE-WITH-GUID}</BasePolicyID>
+  <PolicyName>Hardening-WDAC-Policy</PolicyName>
+  <Rules>
+    <!-- Enable Audit Mode (remove for Enforced mode) -->
+    <Rule>
+      <Option>Enabled:Audit Mode</Option>
+    </Rule>
+    
+    <!-- Allow Microsoft-signed applications -->
+    <Rule>
+      <Option>Enabled:Unsigned System Integrity Policy</Option>
+    </Rule>
+    
+    <!-- Advanced Boot Options Menu -->
+    <Rule>
+      <Option>Enabled:Advanced Boot Options Menu</Option>
+    </Rule>
+    
+    <!-- Update Policy No Reboot -->
+    <Rule>
+      <Option>Enabled:Update Policy No Reboot</Option>
+    </Rule>
+    
+    <!-- Boot Menu Protection -->
+    <Rule>
+      <Option>Enabled:Boot Menu Protection</Option>
+    </Rule>
+    
+    <!-- Invalidate EAs on Reboot -->
+    <Rule>
+      <Option>Enabled:Invalidate EAs on Reboot</Option>
+    </Rule>
+    
+    <!-- Allow Supplemental Policies -->
+    <Rule>
+      <Option>Enabled:Allow Supplemental Policies</Option>
+    </Rule>
+    
+    <!-- Add your custom rules here -->
+    <!-- Example: Allow specific file paths -->
+    <!--
+    <FileRules>
+      <FileAttrib ID="ID_ALLOW_FILE_PATH" FriendlyName="Allow Line-of-Business Application" FileName="MyApp.exe" />
+    </FileRules>
+    <SigningScenarios>
+      <SigningScenario Value="131" ID="ID_SIGNING_SCENARIO_WINDOWS" FriendlyName="Windows Signing Scenario">
+        <ProductSigners>
+          <FileAttribRef RuleID="ID_ALLOW_FILE_PATH" />
+        </ProductSigners>
+      </SigningScenario>
+    </SigningScenarios>
+    -->
+  </Rules>
+  
+  <!-- Add file rules for line-of-business applications here -->
+  <!-- Use New-CIPolicy -ScanPath to generate rules for your applications -->
+  
+</SiPolicy>
+
